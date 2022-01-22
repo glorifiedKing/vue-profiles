@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="comment">
-      <input class="comment-input" :value="profile.comment" placeholder="Write your comment...">
+      <input class="comment-input" :value="profile.comment" oninput="updateComment(this.value)" placeholder="Write your comment...">
     </div>
   </div>
 </template>
