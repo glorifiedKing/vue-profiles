@@ -41,21 +41,24 @@ export default {
           name: "Wojciech",
           email: "wojciech@poz.pl",
           description: "Anaesthesiologist",
-          likes: 34
+          likes: 34,
+          comment: 'Hi woj'
         },
         {
           id: 2,
           name: "Maria",
           email: "maria@poz.pl",
           description: "Radiologist",
-          likes: 28
+          likes: 28,
+          comment: "I am Maria"
         },
         {
           id: 3,
           name: "Anna",
           email: "anna@poz.pl",
           description: "Surgeon",
-          likes: 53
+          likes: 53,
+          comment: "Nice to be Anna"
         }
       ]
     };
@@ -78,6 +81,9 @@ export default {
 </script>
 
 <style>
+html, body {
+  margin: 0;
+}
 #app {
   font-family: "Roboto", helvetica, arial, sans-serif;
   text-align: center;

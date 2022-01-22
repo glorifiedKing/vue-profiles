@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="comment">
-      <input class="comment-input" placeholder="Write your comment...">
+      <input class="comment-input" :value="profile.comment" placeholder="Write your comment...">
     </div>
   </div>
 </template>
@@ -37,6 +37,9 @@ export default {
       type: Object,
       required: true
     }
+  },
+  data() {
+    return {  }
   }
 };
 </script>
