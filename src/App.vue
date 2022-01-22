@@ -3,10 +3,10 @@
     <div class="header">Profiles List</div>
     <div class="content">
       <div class="buttons">
-        <button @click="sortAsc">▲ <small><br/>By likes</small></button>
-        <button @click="sortDesc">▼ <small><br/>By likes</small></button>
-        <button @click="sortByNameAsc">▲ <small><br/>By name</small></button>
-        <button @click="sortByNameDesc">▼ <small><br/>By name</small></button>
+        <button @click="sortAsc" :class="!likesView ? 'hidden' : ''">▲ <small><br/>By likes</small></button>
+        <button @click="sortDesc" :class="likesView ? 'hidden' : ''">▼ <small><br/>By likes</small></button>
+        <button @click="sortByNameAsc" :class="!likesName ? 'hidden' : ''">▲ <small><br/>By name</small></button>
+        <button @click="sortByNameDesc" :class="likesName ? 'hidden' : ''">▼ <small><br/>By name</small></button>
         <button @click="toggleProfileAdd">
           <small :class="addProfile ? 'hidden' : ''">Add Profile</small>
           <small :class="!addProfile ? 'hidden' : ''">Stored Profiles</small>
@@ -88,22 +88,27 @@ export default {
       addProfile: false,
       prof: {
         name: '', email: '', description: ''
-      }
+      },
+      likesView: true,
+      likesName: true
     };
   },
 
   methods: {
     sortAsc() {
+      this.likesView = !this.likesView;
       this.profiles.sort(function(a, b) {
         return a.likes - b.likes;
       });
     },
     sortDesc() {
+      this.likesView = !this.likesView;
       this.profiles.sort(function(a, b) {
         return b.likes - a.likes;
       });
     },
     sortByNameAsc() {
+      this.likesName = !this.likesName;
       this.profiles.sort(function(a, b) {
         if (a.name.toLowerCase() < b.name.toLowerCase()) {
             return -1;
@@ -115,6 +120,7 @@ export default {
       });
     },
     sortByNameDesc() {
+      this.likesName = !this.likesName;
       this.profiles.sort(function(a, b) {
         if (b.name.toLowerCase() < a.name.toLowerCase()) {
             return -1;
