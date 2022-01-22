@@ -7,15 +7,22 @@
         <button @click="sortDesc">▼ <small><br/>By likes</small></button>
         <button @click="sortByNameAsc">▲ <small><br/>By name</small></button>
         <button @click="sortByNameDesc">▼ <small><br/>By name</small></button>
+        <button @click="toggleProfileAdd">
+          <small :class="addProfile ? 'hidden' : ''">Add Profile</small>
+          <small :class="!addProfile ? 'hidden' : ''">Stored Profiles</small>
+        </button>
       </div>
-
-      <ProfileCard
-        v-for="(profile, index) in profiles"
-        :key="index"
-        :profile="profile"
-        class="profile"
-      />
-
+      <div class="add-profile" :class="!addProfile ? 'hidden' : ''">
+        <p>Add new profile</p>
+      </div>
+      <div :class="addProfile ? 'hidden' : ''">
+        <ProfileCard
+          v-for="(profile, index) in profiles"
+          :key="index"
+          :profile="profile"
+          class="profile"
+        />
+      </div>
       <div class="icons-note">
         Icons made by
         <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from
@@ -62,7 +69,8 @@ export default {
           likes: 53,
           comment: "Nice to be Anna"
         }
-      ]
+      ],
+      addProfile: false
     };
   },
 
@@ -72,13 +80,11 @@ export default {
         return a.likes - b.likes;
       });
     },
-
     sortDesc() {
       this.profiles.sort(function(a, b) {
         return b.likes - a.likes;
       });
     },
-
     sortByNameAsc() {
       this.profiles.sort(function(a, b) {
         if (a.name.toLowerCase() < b.name.toLowerCase()) {
@@ -90,7 +96,6 @@ export default {
         return 0;
       });
     },
-
     sortByNameDesc() {
       this.profiles.sort(function(a, b) {
         if (b.name.toLowerCase() < a.name.toLowerCase()) {
@@ -101,7 +106,11 @@ export default {
         }
         return 0;
       });
+    },
+    toggleProfileAdd() {
+      this.addProfile = !this.addProfile;
     }
+    
   }
 };
 </script>
@@ -128,6 +137,10 @@ html, body {
   font-size: 1.5em;
   height: 87.3vh;
   overflow: auto;
+}
+
+.hidden {
+  display: none;
 }
 
 button {
