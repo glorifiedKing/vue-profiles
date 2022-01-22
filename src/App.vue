@@ -14,6 +14,21 @@
       </div>
       <div class="add-profile" :class="!addProfile ? 'hidden' : ''">
         <p>Add new profile</p>
+        <p>
+          <label for="prof-name">Profile Name</label>
+          <input v-model="prof.name" placeholder="Profile name" id="prof-name" />
+        </p>
+        <p>
+          <label for="prof-name">Profile Email</label>
+          <input type="email" v-model="prof.email" placeholder="Profile name" id="prof-name" />
+        </p>
+        <p>
+          <label for="prof-description">Profile Description</label>
+          <textarea v-model="prof.description" placeholder="Profile name" id="prof-description"></textarea>
+        </p>
+        <p>
+          <button @click="addNewProfile">Add Profile</button>
+        </p>
       </div>
       <div :class="addProfile ? 'hidden' : ''">
         <ProfileCard
@@ -70,7 +85,10 @@ export default {
           comment: "Nice to be Anna"
         }
       ],
-      addProfile: false
+      addProfile: false,
+      prof: {
+        name: '', email: '', description: ''
+      }
     };
   },
 
@@ -109,13 +127,34 @@ export default {
     },
     toggleProfileAdd() {
       this.addProfile = !this.addProfile;
+    },
+    addNewProfile() {
+      if(!this.prof.name) {
+        alert('The name field is required');
+      }
+      else if(!this.prof.email) {
+        alert('The email field is required');
+      }
+      else if(!this.prof.description) {
+        alert('The description field is required');
+      } else {
+        this.profiles.push({
+          id: (this.profiles.length + 1),
+          name: this.prof.name,
+          email: this.prof.email,
+          description: this.prof.description,
+          likes: 0,
+          comment: ''
+        });
+
+        this.addProfile = !this.addProfile;
+      }
     }
-    
   }
 };
 </script>
 
-<style>
+<style lang="css">
 html, body {
   margin: 0;
 }
@@ -141,6 +180,29 @@ html, body {
 
 .hidden {
   display: none;
+}
+
+.add-profile {
+  margin-top: 1em;
+}
+.add-profile p {
+  text-align: left;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.add-profile p label {
+  font-size: 1.2rem;
+  padding: .2em 0;
+}
+.add-profile p input, .add-profile p textarea {
+  border: thin solid #35c3c1;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+.add-profile p:first-child {
+  text-align: center;
 }
 
 button {
