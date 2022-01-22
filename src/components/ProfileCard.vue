@@ -40,6 +40,11 @@ export default {
   },
   data() {
     return {  }
+  },
+  methods: {
+    updateComment(com) {
+      this.profile.comment = com;
+    }
   }
 };
 </script>

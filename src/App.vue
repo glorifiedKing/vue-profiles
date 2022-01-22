@@ -94,14 +94,14 @@ html, body {
   justify-content: center;
   flex-direction: column;
   position: relative;
-
   background: linear-gradient(
     135deg,
     rgba(65, 184, 131, 0.9),
     rgba(52, 73, 94, 0.9)
   );
-
   font-size: 1.5em;
+  height: 87.3vh;
+  overflow: auto;
 }
 
 button {
@@ -121,7 +121,7 @@ button {
   width: 100%;
   min-width: 300px;
   padding: 2em;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   position: relative;
   background: rgba(0, 0, 0, 0.15);
 }
