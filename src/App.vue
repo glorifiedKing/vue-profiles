@@ -3,8 +3,10 @@
     <div class="header">Profiles List</div>
     <div class="content">
       <div class="buttons">
-        <button @click="sortAsc">▲</button>
-        <button @click="sortDesc">▼</button>
+        <button @click="sortAsc">▲ <small><br/>By likes</small></button>
+        <button @click="sortDesc">▼ <small><br/>By likes</small></button>
+        <button @click="sortByNameAsc">▲ <small><br/>By name</small></button>
+        <button @click="sortByNameDesc">▼ <small><br/>By name</small></button>
       </div>
 
       <ProfileCard
@@ -75,6 +77,30 @@ export default {
       this.profiles.sort(function(a, b) {
         return b.likes - a.likes;
       });
+    },
+
+    sortByNameAsc() {
+      this.profiles.sort(function(a, b) {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+            return -1;
+        }
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            return 1;
+        }
+        return 0;
+      });
+    },
+
+    sortByNameDesc() {
+      this.profiles.sort(function(a, b) {
+        if (b.name.toLowerCase() < a.name.toLowerCase()) {
+            return -1;
+        }
+        if (b.name.toLowerCase() > a.name.toLowerCase()) {
+            return 1;
+        }
+        return 0;
+      });
     }
   }
 };
@@ -128,8 +154,8 @@ button {
 
 @media screen and (min-width: 600px) {
   .content {
-    width: 50vw;
-    max-width: 15em;
+    /* width: 60vw; */
+    max-width: 23em;
   }
 }
 
