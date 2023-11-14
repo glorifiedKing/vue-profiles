@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="comment">
-      <input class="comment-input" placeholder="Write your comment...">
+      <input class="comment-input" placeholder="Write your comment..." v-model="comment">
     </div>
   </div>
 </template>
@@ -36,6 +36,20 @@ export default {
     profile: {
       type: Object,
       required: true
+    }
+  },
+
+  emits: ['change-comment'],
+
+  data(){
+    return{
+      comment: ''
+    }
+  },
+
+  watch : {
+    comment(){
+      this.$emit('change-comment', { profile: this.profile, comment: this.comment })
     }
   }
 };
